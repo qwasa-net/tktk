@@ -1,0 +1,237 @@
+#answs {
+  text-align: center;
+  padding: 1em 0.5em;
+  margin: 0;
+  overflow: hidden;
+  border: 0 none;
+  min-height: 25vh;
+}
+
+#answs button {
+  margin: 0.4em;
+}
+
+#task, button, div#score span {
+  transition-property: background-color, border-color;
+  transition-duration: 0.25s;
+  transition-timing-function: linear;
+}
+
+#task strong {
+  display: block;
+  margin: 0.25em auto;
+  font-size: 180%;
+  font-weight: bold;
+  letter-spacing: 0.125em;
+}
+
+#task.huge strong {
+  margin: 0 auto;
+}
+
+div.timeline {
+  display: inline-block;
+  width: 100%;
+  font-size: 1em;
+  height: 1em;
+  border: 1px solid #eeeed0;
+  padding: 0;
+  margin: 0 auto;
+  background-color: darkgreen;
+  background: linear-gradient(to right, #226622, #003300);
+  text-align: left;
+  vertical-align: bottom;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+div.timeline div.tl_p {
+  width: 100%;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 -100%;
+  background: red;
+  background: linear-gradient(to right, #ff5555, #f00000);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: red;
+}
+
+div.timeline div.tl_n {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-size: 80%;
+  margin: 0;
+}
+
+div.lblcnt {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  color: #222222;
+  vertical-align: bottom;
+}
+
+div.lblcnt span:nth-child(1) {
+  text-align: right;
+  font-size: 70%;
+}
+
+div.lblcnt span:nth-child(2) {
+  font-weight: bold;
+  text-align: center;
+  padding: 0 0.5em;
+}
+
+div.lblcnt span:nth-child(3) {
+  text-align: left;
+  line-height: 0;
+  position: relative;
+  top: -0.55em;
+  font-size: 70%;
+  color: #808080;
+}
+
+div#score.lblcnt span:nth-child(3).correct {
+  color: black;
+  background-color: #80dd80;
+  padding: 0 0.5em;
+}
+
+div#score.lblcnt span:nth-child(3).wrong {
+  color: white;
+  background-color: red;
+  padding: 0 0.5em;
+}
+
+div#aprgrss {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #808080;
+  font-size: 75%;
+}
+
+div#task {
+  padding: 2.25em 4em 1em 4em;
+  background: #ebe2d2;
+  text-align: center;
+  border-style: solid;
+  border-width: 0.15em 0 0 0;
+  border-color: #d2cabc;
+}
+
+div#task.huge {
+  font-size: 150%;
+}
+
+div#task.done {
+  background: #80dd80;
+  border-color: #6ebe6e;
+}
+
+div#iline {
+  vertical-align: baseline;
+  text-align: justify;
+  line-height: 100%;
+  padding: 0.35em 1em 0.2em 1em;
+  background-color: #fafaf4;
+}
+
+div.task_holder {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+div.answs_holder {
+  margin: 0.5em 0 0 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+div#buts {
+  margin: 0;
+  text-align: center;
+  position: relative;
+}
+
+div#buts div.onleft {
+  position: absolute;
+  top: 1.2em;
+  left: 0.25em;
+  text-align: left;
+}
+
+div#buts div.onright {
+  position: absolute;
+  top: 1.2em;
+  right: 0.25em;
+  text-align: right;
+}
+
+div.timeliner {
+  display: inline-block;
+  width: 100%;
+  height: 0.33em;
+  border: 1px solid #eeeed0;
+  padding: 0;
+  margin: 0 auto;
+  background-color: #c7dcb1;
+  text-align: left;
+  vertical-align: bottom;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  background-image:
+  url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcgCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBpZD0ic3ZnOCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjAwIDEwMCIgaGVpZ2h0PSIxMDBtbSIgd2lkdGg9IjIwMG1tIj4KICA8Zz4KICAgIDxyZWN0IHN0eWxlPSJzdHJva2Utd2lkdGg6MDtmaWxsOnJnYmEoMCwwLDAsMC4xKSIgeT0iMCIgeD0iMCIgaGVpZ2h0PSIxMDAiIHdpZHRoPSIxMDAiIC8+CiAgPC9nPgo8L3N2Zz4=");
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+div.timeliner div.tl_p {
+  width: 100%;
+  border: 0px solid #d2cabc;
+  border-width: 0 0 1px 0;
+  padding: 0;
+  margin: 0;
+  background: #ebe2d2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+div#buts div.timeliner {
+  margin-bottom: 0.5em;
+}
+
+button#absnd,  button#abgohome {
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 0.25em;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  display: inline-block;
+}
+
+button#absnd.on {
+  background-image:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA3NSA3NSc+PGc+PHBvbHlnb24gc3R5bGU9J3N0cm9rZTpyZ2IoNjAsNjAsNjApO3N0cm9rZS13aWR0aDo1O3N0cm9rZS1saW5lam9pbjpyb3VuZDtmaWxsOnJnYig2MCw2MCw2MCk7JyBwb2ludHM9JzM5LjM4OSwxMy43NjkgMjIuMjM1LDI4LjYwNiA2LDI4LjYwNiA2LDQ3LjY5OSAyMS45ODksNDcuNjk5IDM5LjM4OSw2Mi43NSAzOS4zODksMTMuNzY5JyBpZD0ncG9seWdvbjEnIC8+PHBhdGggc3R5bGU9J2ZpbGw6bm9uZTtzdHJva2U6cmdiKDE0MCwxNDAsMTQwKTtzdHJva2Utd2lkdGg6NTtzdHJva2UtbGluZWNhcDpyb3VuZCcgZD0nTSA1NS4wODIsMjAuNTM3IEMgNTguNzc3LDI1LjUyMyA2MC45NjYsMzEuNjk0IDYwLjk2NiwzOC4zNzcgQyA2MC45NjYsNDQuOTk4IDU4LjgxNSw1MS4xMTUgNTUuMTc4LDU2LjA3NicgaWQ9J3BhdGgyJyAvPjxwYXRoIGlkPSdwYXRoMScgZD0nTSA2MS43MSw2Mi42MTEgQyA2Ni45NzcsNTUuOTQ1IDcwLjEyOCw0Ny41MzEgNzAuMTI4LDM4LjM3OCBDIDcwLjEyOCwyOS4xNjEgNjYuOTM2LDIwLjY5NiA2MS42MDksMTQuMDEnIHN0eWxlPSdmaWxsOm5vbmU7c3Ryb2tlOnJnYigxNTAsMTUwLDE1MCk7c3Ryb2tlLXdpZHRoOjQ7c3Ryb2tlLWxpbmVjYXA6cm91bmQnLz48L2c+PC9zdmc+");
+}
+
+button#absnd.off {
+  background-image:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA3NSA3NSc+PGc+PHBvbHlnb24gc3R5bGU9J3N0cm9rZTpyZ2IoMjAwLDIwMCwyMDApO3N0cm9rZS13aWR0aDo1O3N0cm9rZS1saW5lam9pbjpyb3VuZDtmaWxsOnJnYigyMDAsMjAwLDIwMCk7JyBwb2ludHM9JzM5LjM4OSwxMy43NjkgMjIuMjM1LDI4LjYwNiA2LDI4LjYwNiA2LDQ3LjY5OSAyMS45ODksNDcuNjk5IDM5LjM4OSw2Mi43NSAzOS4zODksMTMuNzY5JyBpZD0ncG9seWdvbjEnIC8+PHBhdGggZD0nTSA0OC42NTE3NzIsNTAuMjY5NjQ2IDY5LjM5NTIyMywyNS45NzEwMjQnIHN0eWxlPSdmaWxsOm5vbmU7c3Ryb2tlOnJnYigyMDAsMjAwLDIwMCk7c3Ryb2tlLXdpZHRoOjU7c3Ryb2tlLWxpbmVjYXA6cm91bmQnLz48cGF0aCBkPSdNIDY5LjM5NTIyMyw1MC4yNjk2NDYgNDguNjUxNzcyLDI1Ljk3MTAyNCcgc3R5bGU9J2ZpbGw6bm9uZTtzdHJva2U6cmdiKDIwMCwyMDAsMjAwKTtzdHJva2Utd2lkdGg6NTtzdHJva2UtbGluZWNhcDpyb3VuZCcgLz48L2c+PC9zdmc+");
+}

@@ -1,1 +1,7 @@
 unidecode
+
+django
+
+ipython
+pylint
+autopep8

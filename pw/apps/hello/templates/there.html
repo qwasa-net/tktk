@@ -1,0 +1,47 @@
+{% extends 'page.html' %}
+{% load static %}
+{% block bodyclass %}w100h40{% endblock %}
+{% block h1 %}hello, TKTK{% endblock %}
+{% block page_title %}hello! {{ block.super }}{% endblock %}
+
+{% block content %}
+
+<header id='topline'>
+    <h1>TKTK</h1>
+</header>
+
+<div id='aloha'>
+
+    {% if user %}
+    <div class='social_buts'>
+        <h2 class='striped8'>
+            <i class="btn tktk"></i>{{user.name}}
+        </h2>
+        <p class='etc'>
+            {{ user.created_at|date:'d-M-Y' }} — {{ user.last_login|date:'d-M-Y H:i O'}}
+            {% if user.email %}<br>{{ user.email }}
+            {% elif user.username %}<br>{{ user.username }}
+            {% endif %}
+        </p>
+    </div>
+    {% endif %}
+
+    <p>
+        <a href='/' class='btn primary striped8'>продолжить</a>
+        <br><span class='etc'>(как {{ user.name|default:'гость' }})</span>
+    </p>
+
+    {% if boards %}
+    <h3 class='striped8'>персональные рекорды</h3>
+    <table class='hero'>
+        {% for b in boards %}
+        <tr>
+            <td>{{ b.game.name }}:</td>
+            <td>{{ b.score }} <span>({{ b.ended_at|date:'d.m.y H:i'}})</span></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+</div>
+{% endblock %}

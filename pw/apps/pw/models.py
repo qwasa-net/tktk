@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import hashlib
 import time
 
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.db import models
+
+from apps.hello.models import User
 
 
 class ModelTS(models.Model):
@@ -44,7 +43,7 @@ class Topic(ModelTS):
     enabled = models.BooleanField(default=True)
 
     def __str__(self):
-        return "%s %s %s" % (self.id, self.name, self.engine.name)
+        return str(self.name)
 
     @property
     def icon_url(self, ibase=settings.STATIC_URL, iext='.svg'):
@@ -54,7 +53,7 @@ class Topic(ModelTS):
 
     @property
     def start_url(self):
-        return self.slug
+        return "%s" % (self.slug)
 
 
 class Game(ModelTS):
@@ -89,7 +88,7 @@ class Board(ModelTS):
     time2c = models.IntegerField(default=None, null=True, blank=True)
 
     @classmethod
-    def generate_pin(klass, salt=""):
+    def generate_pin(cls, salt=""):
         s = "%s%i" % (salt, int(time.time()))
         return hashlib.md5(s.encode('utf8')).hexdigest()[:8]
 

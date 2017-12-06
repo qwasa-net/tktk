@@ -14,7 +14,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 # read .env config
 configfile = configparser.ConfigParser()
-print(os.environ.get('CONFIG_FILE', os.path.join(BASE_DIR, '..', 'config.ini')))
 configfile.read(os.environ.get('CONFIG_FILE', os.path.join(BASE_DIR, '..', 'config.ini')))
 config = configfile[os.environ.get('CONFIG_SECTION', "DEFAULT")]
 
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
 
     'apps.pw',
+    'apps.hello'
 ]
 
 if DEBUG:
@@ -61,7 +61,7 @@ APPEND_SLASH = False
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'templates'), ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

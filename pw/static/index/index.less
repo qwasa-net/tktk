@@ -1,0 +1,315 @@
+@import "../styla/colors.less";
+
+.shitcontainer {
+  position: relative;
+  padding: 6em 1em 2em 1em;
+}
+
+.starters {
+  margin: 0;
+  padding: 1em 0 0 0;
+  text-align: center;
+}
+
+.starters .starter {
+  margin: 0 0.66em 0.75em 0.66em;
+  padding: 0 0.75em 0 0;
+  width: auto;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 0;
+  border-width: 1px 1px 1px 0.075em;
+  border-style: solid;
+  border-color: @relaxed-color-border @relaxed-color-border @relaxed-color-border @brand-color2;
+  box-shadow: @relaxed-shadow;
+  font-size: 200%;
+  background-color: white;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: baseline;
+  color: @relaxed-color;
+}
+
+a.starter,
+a.starter:active,
+a.starter:focus,
+a.starter:hover,
+a.starter:visited {
+  color: @relaxed-color;
+}
+
+.starter span {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 40%;
+  line-height: 50%;
+  white-space: nowrap;
+  max-width: 15em;
+  color: @relaxed-color-dim;
+}
+
+.starter div {
+  display: inline-block;
+  white-space: normal;
+}
+
+.starter .engine_icon {
+  width: 3.6em;
+  height: 2em;
+  background-color: @relaxed-color-bg;
+  opacity: 0.75;
+  float: left;
+  margin: 0 0.75em 0 0;
+}
+
+.starter:hover {
+  border-color: @relaxed-color-border @relaxed-color-border @relaxed-color-border @brand-color;
+}
+
+.starter:hover div span {
+  color: @relaxed-color;
+}
+
+.starter:hover .engine_icon {
+  opacity: 1.0;
+  background-color: white;
+}
+
+div.heros {
+  padding: 1em 0em 2em 0em;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.70);
+  border-color: @brand-color;
+  border-style: solid;
+  border-width: 0 0 0 0.25em;
+}
+
+@media all and (orientation: portrait) {
+  div.heros {
+    width: auto;
+    margin-top: 2em;
+  }
+  div.shcontainer {
+    padding: 6em 1em 1em 1em;
+  }
+  body #topline #hello {
+    right: 0.5em;
+  }
+  body #topline #logo {
+    left: 0.5em;
+  }
+}
+
+@media all and (orientation: landscape) {
+  div.heros {
+    width: 22%;
+    min-width: 12em;
+    position: absolute;
+    top: 6em;
+    right: 2em;
+  }
+  div.starters {
+    // margin-right: 25%;
+  }
+}
+
+.heros h3 {
+  font-size: 100%;
+  padding: 0 0 0 1em;
+  margin: 0 0 0.5em 0;
+}
+
+.heros dl {
+  padding: 0;
+  margin: 0 0 0 1.2em;
+  line-height: 1.1em;
+}
+
+.heros dl dt {
+  font-weight: normal;
+  margin-top: 0.5em;
+}
+
+.heros dl dt:first-child {
+  margin-top: 0;
+}
+
+.heros dl dd {
+  font-size: 80%;
+  margin: 0;
+  padding: 0 0 0 1em;
+  color: @brand-color-dark;
+}
+
+.heros dl dd .score {
+  color: @brand-color2;
+}
+
+#footline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.5vh;
+  background-color: @brand-color2;
+}
+
+#topline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 0;
+  height: 2.5em;
+  background-color: @brand-color;
+  box-shadow: @relaxed-shadow;
+  z-index: 2999;
+}
+
+#topline #logo {
+  width: auto;
+  height: 1.3em;
+  position: absolute;
+  bottom: 0.6em;
+  left: 2em;
+}
+
+#topline h1 {
+  display: none;
+}
+
+#topline #hello {
+  width: auto;
+  position: absolute;
+  bottom: 0.6em;
+  right: 2em;
+  line-height: 1em;
+  height: 1em;
+  display: block;
+  color: @brand-color-fg;
+  visibility: hidden;
+  opacity: 0;
+  text-align: right;
+}
+
+#hello > span {
+    font-size: 80%;
+    margin-right: 0;
+    z-index: 100;
+    transition: margin 0.5s ease;
+  }
+
+* {
+  transition-property: opacity, visibility, background-color, background-size, border-color;
+  transition-duration: 0.125s;
+  transition-timing-function: linear;
+}
+
+a#hello_name,
+a#hello_name:active,
+a#hello_name:focus,
+a#hello_name:hover,
+a#hello_name:visited {
+  color: @brand-color-fg-em;
+  margin: 0 0.1em;
+  font-weight: 500;
+  display: inline-block;
+}
+
+div.social_buts .btn {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0.75em;
+  color: #333333;
+  border-color: #ffffff;
+  background-color: #ffffff;
+  // background-color: @relaxed-color-bg;
+  background-position: center;
+  background-size: 90%;
+  opacity: 0.9;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  filter: none;  /*grayscale(33%);*/
+  box-shadow: 0 0 0.05em #c0c0c0;
+}
+
+.btn.tktk {
+  background-image: url('/st/i/tktk.svg');
+}
+
+div#aloha {
+  max-width: 50em;
+  margin: 0 auto;
+  padding: 6em 0 2em 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.80);
+  border: 0 white solid;
+  border-bottom-width: 0.5em;
+}
+
+div#aloha h2 {
+  margin: 0 0 0 0;
+}
+
+div#aloha h3 {
+  margin: 2em 0 0 0;
+  color: @brand-color2;
+}
+
+div#aloha p {
+  margin: 0 0 1em 0;
+}
+
+div#aloha .etc {
+  max-width: 40em;
+  font-size: @etc-size;
+  color: @etc-color;
+  margin: 1em auto;
+}
+
+div#aloha div.social_buts.huge {
+  font-size: 250%;
+  margin: 0.66em auto 1.3em auto;
+}
+
+div#aloha div.social_buts .btn {
+  margin: 0 0.25em;
+  opacity: 1;
+}
+
+div#aloha div.social_buts h2 .btn {
+  margin-right: 1em;
+}
+
+table.hero {
+  margin: 0.5em auto 2em auto;
+  font-size: 80%;
+  border: none;
+  border-collapse: collapse;
+}
+
+table.hero tr {
+  border: 0 solid #c0c0c0;
+  border-width: 0 0 1px 0;
+}
+
+table.hero tr td{
+  padding: 0 1em;
+  width: 15em;
+}
+table.hero tr td:first-child{
+  text-align: right;
+}
+
+table.hero tr td:nth-child(2){
+  text-align: left;
+}
+
+table.hero span {
+  color: #808080;
+  font-size: 80%;
+}

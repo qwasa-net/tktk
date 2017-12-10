@@ -1,0 +1,82 @@
+{% extends 'page.html' %}
+{% load static pipeline %}
+
+{% block bodyclass %}w100h40{% endblock %}
+
+{% block h1 %}tktk{% endblock %}
+
+{% block page_title %}tktk{{ block.super }}{% endblock %}
+
+{% block content %}
+
+{# VueJS #}{% verbatim %}
+<div id='tktk_container'  class="invisible">
+    <div id="gboard">
+
+        <div v-if='task'>
+
+            <div id="task_holder">
+                <div id="iline">
+                    <triploid ref='game_score' class='w33' a='счёт:' v-bind:b='score' v-bind:c='score_super_label'></triploid>
+                    <triploid ref='game_prgrs' class='w33' a='вопрос:' v-bind:b='task_idx + 1' v-bind:c='"из " + games.length'></triploid>
+                    <triploid ref='game_clock' class='w33' a='время:' v-bind:b='game_time_label'></triploid>
+                </div>
+                <div id="task" v-bind:class="task.status + ' ' + config.gamesize" v-html="task.task"></div>
+            </div>
+
+            <div id="answs_holder" v-bind:class="config.gamesize">
+                <triploid class='w55' a='ответов:' v-bind:b='task.answered_correct' v-bind:c='"из " + task.corrects'></triploid>
+                <div id="answs" v-if='task.answs'>
+                    <popbutton v-for="(answ,idx) in task.answs" ref='answs'
+                    v-bind:key="answ.key"
+                    v-on:clicked.once="answ_clicked"
+                    v-bind:value='answ.idx'
+                    v-bind:text='answ.text'
+                    popdelay="?"
+                    class="pocus striped8 default"
+                    v-bind:class="config.gamesize"></popbutton>
+                </div>
+                <div v-if='explanation_text' class='explain'>{{ explanation_text }}</div>
+            </div>
+
+        </div>
+
+        <div id="buts" v-bind:class="(task)?'':'hidden'">
+
+            <timeliner ref='tl'></timeliner>
+
+            <popbutton ref='nextbut' v-if='state=="running" && task && task.status=="done"'
+            v-on:clicked.once="next_task"
+            class="pocus striped8 primary"
+            v-bind:class="config.gamesize"
+            popdelay="750"
+            v-bind:getfocus="ans_keyfocus !== null"
+            text="дальше"></popbutton>
+
+            <popbutton ref='exitbut' v-if='state=="end"'
+            v-on:clicked.once="exit"
+            class="pocus striped8 gold"
+            v-bind:class="config.gamesize"
+            popdelay="900"
+            text="закончить"></popbutton>
+
+            <div class="onleft">
+                <button class="transparent on" v-on:click="soundonoff" id="sndbut"></button>
+                <!-- <button class="transparent" v-on:click="exit" id="homebut"></button> -->
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endverbatim %}{# VueJS #}
+
+{% endblock %}
+
+{% block more_headers %}
+{% stylesheet 'tktk' %}
+{% endblock %}
+
+{% block more_scripts %}
+{% javascript 'vuebase' %}{% javascript 'tktk' %}
+{% endblock %}

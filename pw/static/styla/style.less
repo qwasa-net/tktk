@@ -1,0 +1,332 @@
+@import "colors.less";
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', 'Roboto', 'Pt Sans', 'Corbel', 'Helvetica Nue', sans;
+  outline: 0 none;
+}
+
+*::-moz-focus-inner {
+  border: 0;
+  outline: none;
+}
+
+html {
+  touch-action: manipulation;
+}
+
+html,
+body {
+  font-size: 16pt;
+}
+
+
+body {
+  margin: 0 auto;
+  background-color: @main-bg;
+  color: @main-color;
+}
+
+* {
+  font-size: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Roboto', 'Pt Sans', 'Corbel', 'Helvetica Nue', sans;
+  // font-weight: bold;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 2.25em;
+  margin: 2em 0 1em 0;
+}
+
+h2 {
+  font-size: 1.8em;
+  margin: 1em 0;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin: 1em 0;
+}
+
+h4 {
+  font-size: 1.25em;
+  margin: 1em 0;
+}
+
+h5 {
+  font-size: 1.25em;
+  margin: 1em 0;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 1em;
+  margin: 1em 0;
+  font-weight: bold;
+}
+
+.light {
+  font-weight: normal;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: @links-color;
+}
+
+#gboard {
+  margin: 1em 1em;
+  padding: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.etc {
+  font-size: @etc-size;
+  color: @etc-color;
+}
+
+.striped8 {
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcgCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBpZD0ic3ZnOCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTAwIDE2MCIgaGVpZ2h0PSIxNjBtbSIgd2lkdGg9IjEwMG1tIj4KICA8ZGVmcyBpZD0iZGVmczIiIC8+CiAgPGcgaWQ9ImxheWVyMSI+CiAgICA8cmVjdCBzdHlsZT0ic3Ryb2tlLXdpZHRoOjA7ZmlsbDpyZ2JhKDAsMCwwLDAuMDQpIiB5PSI1IiB4PSIwIiBoZWlnaHQ9IjgiIHdpZHRoPSIxMDAiIGlkPSJyMSIgLz4KICAgIDxyZWN0IHN0eWxlPSJzdHJva2Utd2lkdGg6MDtmaWxsOnJnYmEoMCwwLDAsMC4wNCkiIHk9IjI1IiB4PSIwIiBoZWlnaHQ9IjgiIHdpZHRoPSIxMDAiIGlkPSJyMSIgLz4KICAgIDxyZWN0IHN0eWxlPSJzdHJva2Utd2lkdGg6MDtmaWxsOnJnYmEoMCwwLDAsMC4wNCkiIHk9IjQ1IiB4PSIwIiBoZWlnaHQ9IjgiIHdpZHRoPSIxMDAiIGlkPSJyMSIgLz4KICAgIDxyZWN0IHN0eWxlPSJzdHJva2Utd2lkdGg6MDtmaWxsOnJnYmEoMCwwLDAsMC4wNCkiIHk9IjY1IiB4PSIwIiBoZWlnaHQ9IjgiIHdpZHRoPSIxMDAiIGlkPSJyMSIgLz4KICAgIDxyZWN0IHN0eWxlPSJzdHJva2Utd2lkdGg6MDtmaWxsOnJnYmEoMCwwLDAsMC4wNCkiIHk9Ijg1IiB4PSIwIiBoZWlnaHQ9IjgiIHdpZHRoPSIxMDAiIGlkPSJyMSIgLz4KICAgIDxyZWN0IHN0eWxlPSJzdHJva2Utd2lkdGg6MDtmaWxsOnJnYmEoMCwwLDAsMC4wNCkiIHk9IjEwNSIgeD0iMCIgaGVpZ2h0PSI4IiB3aWR0aD0iMTAwIiBpZD0icjEiIC8+CiAgICA8cmVjdCBzdHlsZT0ic3Ryb2tlLXdpZHRoOjA7ZmlsbDpyZ2JhKDAsMCwwLDAuMDQ1KSIgeT0iMTI1IiB4PSIwIiBoZWlnaHQ9IjgiIHdpZHRoPSIxMDAiIGlkPSJyMSIgLz4KICAgIDxyZWN0IHN0eWxlPSJzdHJva2Utd2lkdGg6MDtmaWxsOnJnYmEoMCwwLDAsMC4wNSkiIHk9IjE0NSIgeD0iMCIgaGVpZ2h0PSI4IiB3aWR0aD0iMTAwIiBpZD0icjEiIC8+CiAgPC9nPgo8L3N2Zz4=");
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+.stripedv {
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcgCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBpZD0ic3ZnOCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgaGVpZ2h0PSIxMDBtbSIgd2lkdGg9IjEwMG1tIj4KICA8Zz4KICAgIDxyZWN0IHN0eWxlPSJzdHJva2Utd2lkdGg6MDtmaWxsOnJnYmEoMCwwLDAsMC4wNikiIHk9IjAiIHg9IjAiIGhlaWdodD0iMTAwIiB3aWR0aD0iNTAiIC8+CiAgPC9nPgo8L3N2Zz4=");
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+.btn,
+button {
+  display: inline-block;
+  border: 1px solid @relaxed-color-border;
+  border-radius: 0.15em;
+  padding: 0.25em 0.75em;
+  font-size: 100%;
+  background-color: @relaxed-color-bg;
+  color: @relaxed-color;
+}
+
+.btn:hover,
+button:hover {
+  background-color: @relaxed-color-bg-d;
+}
+
+.pocus:focus {
+  box-shadow: 0 0 0.25em #408080;
+  border-color: #66cccc;
+}
+
+.btn.transparent,
+.btn.transparent:visited,
+button.transparent {
+  background-color: #ffffff;
+  border-color: #f0f0f0;
+  color: @relaxed-color-dim;
+}
+
+.btn.default,
+.btn.default:visited,
+button.default {
+  background-color: @pal-4a;
+  color: @pal-4b;
+  border-color: @pal-4ad;
+}
+
+.btn.default:hover,
+button.default:hover {
+  background-color: @pal-4ad;
+  border-color: @pal-4al;
+}
+
+.btn.gold,
+.btn.gold:visited,
+button.gold {
+  background-color: @pal-5a;
+  color: @pal-5b;
+  border-color: @pal-5ad;
+}
+
+.btn.gold:hover,
+button.gold:hover {
+  background-color: @pal-5al;
+}
+
+.btn.danger,
+.btn.danger:visited,
+button.danger {
+  background-color: @pal-6a;
+  color: @pal-6b;
+  border-color: @pal-6ad;
+}
+
+.btn.danger:hover,
+button.danger:hover {
+  background-color: @pal-6al;
+}
+
+.btn.success,
+.btn.success:visited,
+button.success {
+  background-color: @pal-3a;
+  color: @pal-3b;
+  border-color: @pal-3ad;
+}
+
+.btn.success:hover,
+button.success:hover {
+  background-color: @pal-3al;
+}
+
+.btn.primary,
+button.primary {
+  background-color: @pal-7a;
+  color: @pal-7b;
+  border-color: @pal-7ad;
+}
+
+.btn.primary:hover,
+button.primary:hover {
+  background-color: @pal-7al;
+}
+
+.primary.pocus:focus {
+  box-shadow: 0 0 0.15em #cccc66;
+  border-color: #dddd88;
+}
+
+.btn.muted,
+button.muted {
+  opacity: 0.66;
+  filter: grayscale(66%);
+}
+
+.btn.small,
+button.small {
+  font-size: 80%;
+}
+
+.btn.large,
+button.large {
+  font-size: 150%;
+}
+
+.btn.huge,
+button.huge {
+  font-size: 200%;
+}
+
+.btn.xxl,
+button.xxl {
+  font-size: 300%;
+}
+
+.vbottom {
+  vertical-align: bottom;
+}
+
+.iblock {
+  display: inline-block;
+}
+
+.w50 {
+  width: 50%;
+  padding: 0;
+  margin: 0;
+}
+
+.w33 {
+  width: 33%;
+  padding: 0;
+  margin: 0;
+}
+
+.w25 {
+  width: 25%;
+  padding: 0;
+  margin: 0;
+}
+
+.w66 {
+  width: 66%;
+  padding: 0;
+  margin: 0;
+}
+
+.hidden,
+.invisible {
+  visibility: hidden;
+}
+
+#log {
+  display: none;
+}
+
+@media all and (orientation: landscape) {
+  html body.w100h40 {
+    font-size: 2.66vh;
+    max-width: 100em;
+  }
+}
+
+@media all and (orientation: landscape) and (max-aspect-ratio: 1080/920) {
+  html body.w100h40 {
+    font-size: 2.4vh;
+  }
+
+  #gboard {
+    margin: 0.2em 0.2em;
+  }
+}
+
+@media all and (orientation: portrait) {
+  html body.w100h40 {
+    font-size: 3vw;
+    max-width: 60em;
+  }
+
+  #gboard {
+    margin: 0.5em 0.5em;
+  }
+}
+
+@media all and (orientation: portrait) and (min-aspect-ratio: 920/1080) {
+  html body.w100h40 {
+    font-size: 2.7vw;
+  }
+
+  #gboard {
+    margin: 0.2em 0.2em;
+  }
+}
+
+@media all and (orientation: portrait) and (max-aspect-ratio: 721/1280) {
+  html body.w100h40 {
+    font-size: 3.4vw;
+  }
+
+  #gboard {
+    margin: 0.2em 0.2em;
+  }
+}

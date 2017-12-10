@@ -1,0 +1,68 @@
+@import "colors.less";
+
+div.triploid {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    color: @relaxed-color;
+    vertical-align: bottom;
+  }
+
+  div.triploid span:nth-child(1) {
+    text-align: right;
+    font-size: @etc-size;
+  }
+
+  div.triploid span:nth-child(2) {
+    font-weight: bold;
+    text-align: center;
+    padding: 0 0.5em;
+  }
+
+  div.triploid span:nth-child(3) {
+    text-align: left;
+    line-height: 0;
+    position: relative;
+    top: -0.55em;
+    font-size: @etc-size;
+    color: @etc-color;
+  }
+
+  div.triploid.good span:nth-child(3) {
+    color: @pal-good-fg;
+    background-color: @pal-good-bg;
+    padding: 0 0.5em;
+  }
+
+  div.triploid.bad span:nth-child(3) {
+    color: @pal-bad-fg;
+    background-color: @pal-bad-bg;
+    padding: 0 0.5em;
+  }
+
+  div.timeliner {
+    display: block;
+    width: 100%;
+    height: 0.36em;
+    border: 0 none;
+    padding: 0;
+    margin: 0 auto;
+    background-color: @pal-3a;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    background-size: auto 200%;
+  }
+
+  div.timeliner div.tl_p {
+    width: 100%;
+    border: 0 none;
+    padding: 0;
+    margin: 0;
+    background: @pal-2ad;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }

@@ -1,0 +1,160 @@
+@import "../styla/colors.less";
+
+#task,
+button,
+div.triploid span {
+  transition-property: background-color, border-color;
+  transition-duration: 0.25s;
+  transition-timing-function: linear;
+}
+
+div#task_holder {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+div#task_holder div#task {
+  padding: 2.25em 4em 1em 4em;
+  background-color: @pal-2a;
+  border-color: @pal-2ad;
+  color: @pal-2b;
+  text-align: center;
+  border-style: solid;
+  border-width: 0.12em 0 0 0;
+}
+
+div#task_holder div#task.huge {
+  padding: 1.5em 4em 1em 4em;
+  font-size: 150%;
+  margin: 0 auto;
+}
+
+div#task_holder div#task.done {
+  background: @pal-3a;
+  border-color: @pal-3ad;
+  color: @pal-3b;
+}
+
+div#task_holder div#task strong {
+  display: block;
+  margin: 0.25em auto;
+  font-size: 180%;
+  font-weight: bold;
+  letter-spacing: 0.125em;
+}
+
+div#task_holder div#iline {
+  vertical-align: baseline;
+  text-align: justify;
+  line-height: 100%;
+  padding: 0.35em 1em 0.2em 1em;
+  background-color: rgba(255, 255, 255, 0.90);
+}
+
+div#answs_holder {
+  margin: 0;
+  padding: 1em 3em 3em 3em;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  margin: 0;
+  border: 0 none;
+  min-height: 25vh;
+  background-color: rgba(255, 255, 255, 0.55);
+}
+
+div#answs_holder.huge {
+}
+
+div#answs_holder div.triploid {
+  position: absolute;
+  top: 0.1em;
+  right: 0.1em;
+  font-size: 75%;
+}
+
+div#answs_holder div.triploid span {
+  color: #808080;
+}
+
+div#answs_holder div#answs {}
+
+div#answs_holder button {
+  margin: 0.4em 0.55em;
+}
+
+div#answs_holder div.explain {
+  font-size: @etc-size;
+  color: @etc-color-dim;
+  position: absolute;
+  text-align: center;
+  line-height: 1em;
+  padding: 0;
+  bottom: 0.5em;
+  left: 12.5%;
+  right: 12.5%;
+}
+
+div#buts {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  position: relative;
+}
+
+div#buts div.onleft {
+  position: absolute;
+  top: 1em;
+  left: 0;
+  text-align: left;
+}
+
+div#buts div.onright {
+  position: absolute;
+  top: 0.5em;
+  right: 0;
+  text-align: right;
+}
+
+div#buts div.timeliner {
+  margin-bottom: 1em;
+}
+
+button#sndbut,
+button#homebut {
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 0.25em;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  display: inline-block;
+}
+
+button#sndbut.on {
+  background-image:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA3NSA3NSc+PGc+PHBvbHlnb24gc3R5bGU9J3N0cm9rZTpyZ2IoNjAsNjAsNjApO3N0cm9rZS13aWR0aDo1O3N0cm9rZS1saW5lam9pbjpyb3VuZDtmaWxsOnJnYig2MCw2MCw2MCk7JyBwb2ludHM9JzM5LjM4OSwxMy43NjkgMjIuMjM1LDI4LjYwNiA2LDI4LjYwNiA2LDQ3LjY5OSAyMS45ODksNDcuNjk5IDM5LjM4OSw2Mi43NSAzOS4zODksMTMuNzY5JyBpZD0ncG9seWdvbjEnIC8+PHBhdGggc3R5bGU9J2ZpbGw6bm9uZTtzdHJva2U6cmdiKDE0MCwxNDAsMTQwKTtzdHJva2Utd2lkdGg6NTtzdHJva2UtbGluZWNhcDpyb3VuZCcgZD0nTSA1NS4wODIsMjAuNTM3IEMgNTguNzc3LDI1LjUyMyA2MC45NjYsMzEuNjk0IDYwLjk2NiwzOC4zNzcgQyA2MC45NjYsNDQuOTk4IDU4LjgxNSw1MS4xMTUgNTUuMTc4LDU2LjA3NicgaWQ9J3BhdGgyJyAvPjxwYXRoIGlkPSdwYXRoMScgZD0nTSA2MS43MSw2Mi42MTEgQyA2Ni45NzcsNTUuOTQ1IDcwLjEyOCw0Ny41MzEgNzAuMTI4LDM4LjM3OCBDIDcwLjEyOCwyOS4xNjEgNjYuOTM2LDIwLjY5NiA2MS42MDksMTQuMDEnIHN0eWxlPSdmaWxsOm5vbmU7c3Ryb2tlOnJnYigxNTAsMTUwLDE1MCk7c3Ryb2tlLXdpZHRoOjQ7c3Ryb2tlLWxpbmVjYXA6cm91bmQnLz48L2c+PC9zdmc+");
+}
+
+button#sndbut.off {
+  background-image:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA3NSA3NSc+PGc+PHBvbHlnb24gc3R5bGU9J3N0cm9rZTpyZ2IoMjAwLDIwMCwyMDApO3N0cm9rZS13aWR0aDo1O3N0cm9rZS1saW5lam9pbjpyb3VuZDtmaWxsOnJnYigyMDAsMjAwLDIwMCk7JyBwb2ludHM9JzM5LjM4OSwxMy43NjkgMjIuMjM1LDI4LjYwNiA2LDI4LjYwNiA2LDQ3LjY5OSAyMS45ODksNDcuNjk5IDM5LjM4OSw2Mi43NSAzOS4zODksMTMuNzY5JyBpZD0ncG9seWdvbjEnIC8+PHBhdGggZD0nTSA0OC42NTE3NzIsNTAuMjY5NjQ2IDY5LjM5NTIyMywyNS45NzEwMjQnIHN0eWxlPSdmaWxsOm5vbmU7c3Ryb2tlOnJnYigyMDAsMjAwLDIwMCk7c3Ryb2tlLXdpZHRoOjU7c3Ryb2tlLWxpbmVjYXA6cm91bmQnLz48cGF0aCBkPSdNIDY5LjM5NTIyMyw1MC4yNjk2NDYgNDguNjUxNzcyLDI1Ljk3MTAyNCcgc3R5bGU9J2ZpbGw6bm9uZTtzdHJva2U6cmdiKDIwMCwyMDAsMjAwKTtzdHJva2Utd2lkdGg6NTtzdHJva2UtbGluZWNhcDpyb3VuZCcgLz48L2c+PC9zdmc+");
+}
+
+
+@media all and (orientation: portrait) {
+  div#task_holder div#task {
+    padding: 2.25em 2em 1em 2em;
+  }
+
+  div#answs_holder {
+    padding: 2em 0.5em 2em 0.5em;
+    min-height: 30vh;
+  }
+
+  div#answs_holder button {
+    margin: 0.5em;
+  }
+
+}

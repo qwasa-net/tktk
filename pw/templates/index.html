@@ -1,0 +1,44 @@
+{% extends 'page.html' %}
+{% load static pipeline %}
+
+{% block bodyclass %}w100h40{% endblock %}
+
+{% block h1 %}TKTK{% endblock %}
+
+{% block page_title %}TKTK{{ block.super }}{% endblock %}
+
+{% block head_styles %}{% stylesheet 'index' %}{% endblock %}
+
+{% block more_scripts %}{% javascript 'vuebase' %}{% javascript 'index' %}{% endblock %}
+
+{# ############################################# #}
+{% block content %}{% spaceless %}
+
+<header id="topline">
+    <a href="/"><img src="{% static 'i/tktk-index.svg' %}" id="logo" alt="" title="TKTK"></a>
+    <h1>TKTK</h1>
+    <div id="hello">
+        <span>Привет, <a href="/hello/there/" id="hello_name">гость</a>!</span>
+    </div>
+</header>
+
+<!-- starters and no heroes -->
+<div class='shitcontainer'>
+
+    {# VueJS template #}{% verbatim %}
+    <div id="vtopics" class="invisible">
+        <div class="starters" v-if="topics">
+            <a v-for="top of topics" class="starter xstriped8 pocus" v-bind:href="top.start_url">
+                <img v-bind:src="top.icon_url" class="engine_icon" />
+                <div>
+                    {{ top.name }}
+                    <span v-if="top.description">{{ top.description }}</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endverbatim %}
+
+</div>
+{% endspaceless %}
+{% endblock %}

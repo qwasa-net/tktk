@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
 
     'apps.pw',
-    'apps.hello'
+    'apps.hello',
+    'apps.tktk'
 ]
 
 if DEBUG:

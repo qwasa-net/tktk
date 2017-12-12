@@ -1,10 +1,9 @@
 """
 Django settings for pw project.
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
 import configparser
 import random
 import string
@@ -32,19 +31,24 @@ ALLOWED_HOSTS = config.get("MY_HOSTS", "*").split(";")
 
 # Application definition
 INSTALLED_APPS = [
-    "django.contrib.admin",
+    # django
+    # "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.messages",
+    # "django.contrib.messages",
 
-    'apps.pw',
-    'apps.hello',
-    'apps.tktk'
+    # 3d party
+    "pipeline",  # assets packaging
+
+    # PW
+    'apps.pw',  # basic models
+    'apps.hello',  # user
+    'apps.tktk'  # tktk API
 ]
 
-if DEBUG:
-    INSTALLED_APPS += ["django.contrib.staticfiles"]
+if 'collectstatic' in sys.argv:
+    INSTALLED_APPS.append('django.contrib.staticfiles')
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -116,17 +120,22 @@ USE_I18N = False
 USE_L10N = False
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/st/'
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'www', 'st')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
 
 # Logging
-
-LOGS_BASE_DIR = config.get("PW_LOGS_BASE_DIR", os.path.join(os.path.dirname(BASE_DIR), 'logs'))
+LOGS_BASE_DIR = config.get("LOGS_BASE_DIR", os.path.join(os.path.dirname(BASE_DIR), 'logs'))
 if not os.path.exists(LOGS_BASE_DIR):
     os.makedirs(LOGS_BASE_DIR)
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -141,6 +150,12 @@ LOGGING = {
         'require_debug_false': {'()': 'django.utils.log.RequireDebugFalse', }
     },
     'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'formatter': 'verbose',
+            'class': 'logging.StreamHandler',
+        },
         'debug': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
@@ -148,7 +163,7 @@ LOGGING = {
             'formatter': 'verbose',
             'filename': os.path.join(LOGS_BASE_DIR, 'debug.log'),
         },
-        'production': {
+        'info': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
@@ -156,8 +171,6 @@ LOGGING = {
         },
         'errors': {
             'level': 'ERROR',
-            # 'filters': ['require_debug_false'],
-            # 'class': 'django.utils.log.AdminEmailHandler',
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
             'filename': os.path.join(LOGS_BASE_DIR, 'errors.log'),
@@ -165,29 +178,35 @@ LOGGING = {
     },
     'loggers': {
         '': {
-            'handlers': ['debug', 'production'],
+            'handlers': ['console', 'debug', 'info', ],
             'level': 'INFO',
             'propagate': False,
         },
         'django': {
-            'handlers': ['debug', 'production'],
-            'level': 'DEBUG',
+            'handlers': ['console', 'debug', 'info', ],
+            'level': 'WARNING',
             'propagate': False,
         },
         'django.db.backends': {
-            'handlers': ['debug', 'production'],
+            'handlers': ['debug', 'info', ],
             'level': 'INFO',
             'propagate': False,
         },
         'django.request': {
-            'handlers': ['debug', 'production', 'errors'],
+            'handlers': ['debug', 'info', 'errors', ],
             'level': 'WARNING',
             'propagate': True,
         },
         'django.template': {
-            'handlers': ['debug', ],
+            'handlers': ['console', 'debug', ],
             'level': 'WARNING',
             'propagate': False,
         },
     },
 }
+
+# PIPELINE application
+try:
+    from .pipeline import PIPELINE
+except Exception as e:
+    PIPELINE = {}

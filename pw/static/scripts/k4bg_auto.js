@@ -1,0 +1,1 @@
+(function(){k4bg(true, true);}).call(this);

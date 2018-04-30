@@ -24,6 +24,8 @@ PIPELINE = {
             'source_filenames': (
                 'scripts/soundman.js',
                 'scripts/components.js',
+                'scripts/k4bg.js',
+                'scripts/k4bg_auto.js',
                 'tktk/tktk.js',
             ),
             'output_filename': 'tktk/script.js',
@@ -36,6 +38,8 @@ PIPELINE = {
         'index': {
             'source_filenames': (
                 'scripts/hello.js',
+                'scripts/k3bg.js',
+                'scripts/k3bg_auto.js',
                 'index/index.js',
             ),
             'output_filename': 'index/script.js',
@@ -53,6 +57,7 @@ PIPELINE = {
             'source_filenames': (
                 'styla/style.less',
                 'styla/components.less',
+                'styla/k3bg.css',
                 'tktk/tktk.less',
             ),
             'output_filename': 'tktk/style.css',
@@ -62,6 +67,7 @@ PIPELINE = {
             'source_filenames': (
                 'styla/style.less',
                 'index/index.less',
+                'styla/k3bg.css',
             ),
             'output_filename': 'index/style.css',
         },

@@ -2,6 +2,7 @@ unidecode
 
 django>=2.0.0,<=2.99.99
 django-pipeline
+djangorestframework
 
 ipython
 pylint

@@ -13,12 +13,13 @@ var vtopics = new Vue({
     mounted: function() {},
     methods: {
         start: function() {
-            axios.get('/topics.json').then(response => {
-                this.topics = response.data.topics;
-                this.$el.classList.remove('invisible');
-            }, error => {
-                console.error(error);
-            });
+            axios.get('/topics.json')
+                .then((response) => {
+                    this.topics = response.data;
+                    this.$el.classList.remove('invisible');
+                }, (error) => {
+                    console.error(error);
+                });
 
         }
     }

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import time
+import json
 
 from django.conf import settings
 from django.db import models
@@ -68,6 +69,20 @@ class Game(ModelTS):
 
     def __str__(self):
         return str(self.name)
+
+    @property
+    def data_json(self):
+        try:
+            return json.loads(self.data)
+        except Exception as _:
+            return {}
+
+    @property
+    def config_json(self):
+        try:
+            return json.loads(self.config)
+        except Exception as _:
+            return {}
 
 
 class Board(ModelTS):

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # 3d party
     "pipeline",  # assets packaging
+    "rest_framework",  # fancy REST
 
     # PW
     'apps.pw',  # basic models
@@ -204,6 +205,15 @@ LOGGING = {
         },
     },
 }
+
+
+# DRF very relaxed REST -- only JNSON with no auth
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
+    'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ()
+}
+
 
 # PIPELINE application
 try:

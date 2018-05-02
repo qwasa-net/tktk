@@ -38,8 +38,8 @@ PIPELINE = {
         'index': {
             'source_filenames': (
                 'scripts/hello.js',
-                'scripts/k3bg.js',
-                'scripts/k3bg_auto.js',
+                'scripts/k4bg.js',
+                'scripts/k4bg_auto.js',
                 'index/index.js',
             ),
             'output_filename': 'index/script.js',

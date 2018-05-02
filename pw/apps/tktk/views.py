@@ -2,89 +2,113 @@ import datetime
 import json
 import logging
 
-from django.http import Http404, HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, render, render_to_response
-from django.utils.decorators import method_decorator
-from django.views import View
-from django.views.decorators.csrf import csrf_exempt
+from django.http import Http404
+from django.shortcuts import get_object_or_404
+from rest_framework import authentication, exceptions, generics, serializers, response
 
 from apps.hello.models import User
-from apps.pw.models import Topic, Board, Game
+from apps.pw.models import Board, Game, Topic
 
 logger = logging.getLogger(__name__)
 
 
-class TopicsListView(View):
+class HelloUserAuth(authentication.BaseAuthentication):
+    """
+    user must say `hello` and get his own session before accessing the games
+    """
 
-    def get(self, rq, topic=None):
-
-        topics = Topic.objects.filter(enabled=True).order_by('-ordering')
-
-        data = []
-        for t in topics:
-            data.append({'name': t.name,
-                         'description': t.description,
-                         'lang': t.lang,
-                         'icon_url': t.icon_url,
-                         'engine': t.engine.slug,
-                         'slug': t.slug,
-                         'start_url': t.start_url
-                         })
-
-        return JsonResponse({'topics': data}, content_type="application/json")
-
-
-@method_decorator(csrf_exempt, name='dispatch')
-class GameView(View):
-
-    def get(self, rq, topic=None):
-
-        user = User.session_user(rq)
+    def authenticate(self, request):
+        user = User.session_user(request, create_new=False)
         if not user:
-            raise Http404("who are you?")
+            raise exceptions.AuthenticationFailed('who are you?')
+        return (user, None)
 
+
+class TopicsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Topic
+        fields = ['name', 'description', 'lang', 'icon_url', 'engine', 'slug', 'start_url']
+
+
+class TopicsListView(generics.ListAPIView):
+    """
+    /topics.json => list of available topics (for all engines)
+    """
+    authentication_classes = [HelloUserAuth, ]
+    queryset = Topic.objects.filter(enabled=True).order_by('-ordering')
+    serializer_class = TopicsSerializer
+
+
+class BoardUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'name']
+
+
+class BoardGameSerializer(serializers.ModelSerializer):
+    data = serializers.JSONField(source='data_json')
+    config = serializers.JSONField(source='config_json')
+
+    class Meta:
+        model = Game
+        fields = ['data', 'config']
+
+
+class BoardSerializer(serializers.ModelSerializer):
+    user = BoardUserSerializer()
+    game = BoardGameSerializer()
+
+    class Meta:
+        model = Board
+        fields = ['id', 'pin', 'user', 'game']
+
+
+class BoardGetView(generics.GenericAPIView):
+
+    """
+    /<topic-slug>/tktk.json => create a board for the game
+    """
+
+    authentication_classes = [HelloUserAuth, ]
+
+    def get(self, request, *args, **kwargs):
+
+        topic = kwargs.get("topic")
         game = Game.objects.filter(topic__slug=topic).order_by('?').first()
+        if not game:
+            raise Http404("no games!")
 
-        board = Board()
-        board.user = user
-        board.game = game
-        board.pin = board.generate_pin(user.name)
-        board.started_at = datetime.datetime.now()
-        board.save()
+        board = Board.objects.create(
+            user=request.user,
+            game=game,
+            pin=Board.generate_pin(request.user.name),
+            started_at=datetime.datetime.now()
+        )
 
-        data = {
-            'id': board.id,
-            'pin': board.pin,
-            'user': {
-                'id': user.id,
-                'name': user.name
-            },
-            'game': {}
-        }
+        serializer = BoardSerializer(board)
+        return response.Response(serializer.data)
 
-        data['game']['data'] = json.loads(game.data)
-        if game.config:
-            data['game']['config'] = json.loads(game.config)
 
-        return JsonResponse(data, content_type="application/json")
+class BoardSaveView(generics.GenericAPIView):
 
-    def post(self, rq, topic=None):
+    """
+    /<topic-slug>/exit => update board and exit
+    """
 
-        user = User.session_user(rq)
-        if not user:
-            raise Http404("who are you?")
+    authentication_classes = [HelloUserAuth, ]
 
-        board_id = rq.POST.get('id', None)
-        board_pin = rq.POST.get('pin', None)
-        board_history = rq.POST.get('history', None)
-        score = rq.POST.get('score', None)
+    def post(self, request, *args, **kwargs):
 
-        board = get_object_or_404(Board, id=board_id, pin=board_pin, user=user)
+        bid = request.data.get('id')
+        pin = request.data.get('pin')
+        history = request.data.get('history')
+        score = request.data.get('score', 0)
+
+        board = get_object_or_404(Board, id=bid, pin=pin, user=request.user)
         board.score = score
-        board.history = board_history
+        board.history = history
         board.ended_at = datetime.datetime.now()
         board.save()
 
         rsp = {'status': "OK", 'id': board.id, 'goto': "/"}
-
-        return JsonResponse(rsp, content_type="application/json")
+        return response.Response(rsp)

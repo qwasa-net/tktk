@@ -51,9 +51,10 @@ def generate_symons(words, allwords):
             random.shuffle(bids)
 
             for i in range(len(qwords)):
-                task['answs'].append(qwords[bids[i]])
-                if bids[i] < oks:
-                    task['correct'].append(i)
+                task['answs'].append([qwords[bids[i]], "", 1 if bids[i] < oks else 0])
+                # task['answs'].append(qwords[bids[i]])
+                # if bids[i] < oks:
+                #     task['correct'].append(i)
 
             tasks.append(task)
 
@@ -111,9 +112,10 @@ def generate_verbs(words, qc=80, t1='N', t2='V'):
         random.shuffle(bids)
 
         for i in range(len(qwords)):
-            task['answs'].append(qwords[bids[i]])
-            if bids[i] < oks:
-                task['correct'].append(i)
+            task['answs'].append([qwords[bids[i]], "", 1 if bids[i] < oks else 0])
+        #    task['answs'].append(qwords[bids[i]])
+        #     if bids[i] < oks:
+        #         task['correct'].append(i)
 
         tasks.append(task)
 
@@ -191,9 +193,10 @@ def generate_conundrum(words, wwl=8, wl=4):
         random.shuffle(bids)
 
         for i in range(len(qwords)):
-            task['answs'].append(qwords[bids[i]])
-            if bids[i] < oks:
-                task['correct'].append(i)
+            task['answs'].append([qwords[bids[i]], "", 1 if bids[i] < oks else 0])
+            # task['answs'].append(qwords[bids[i]])
+            # if bids[i] < oks:
+            #     task['correct'].append(i)
 
         tasks.append(task)
 

@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import csv
 import re
 import json
@@ -79,9 +79,7 @@ def generator_22(ac=500, bads=4):
         random.shuffle(bids)
 
         for i in range(len(ans)):
-            task['answs'].append(ans[bids[i]])
-            if bids[i] == 0:
-                task['correct'].append(i)
+            task['answs'].append([ans[bids[i]], None, 1 if bids[i] == 0 else 0])
 
         tasks.append(task)
 
@@ -110,7 +108,7 @@ if __name__ == '__main__':
             bk['engine'] = 'tktk'
             bk['topic'] = '2+2'
             bk['name'] = 'устный счёт'
-            bk['config'] = {'auto_next': True, 'auto_next_delay': 1000, 'butsize': 'huge'}
+            bk['config'] = {'auto_next': True, 'auto_next_delay': 1250, 'gamesize': 'huge'}
             games.append(bk)
             bk = {'data': []}
 

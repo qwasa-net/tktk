@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 import csv
 import re
@@ -91,6 +92,26 @@ BAG = ['RU', 'FI', 'IN', 'ES', 'IT', 'DE', 'CZ', 'GB', 'US', 'CN', 'PK', 'PL', '
 BAG_RUS2 = ['России', 'Финляндии', "Индии", "Испании", "Италии", "Германии", "Чехии", "Великобритании",
             "США", "Китая", "Пакистана", "Польши", "Франции", "Португалии", "Аргентины", "Бразилии", "Мексики"]
 
+BAGS_RUS3 = {
+    'RU': ['России', 'в России'],
+    'FI': ['Финляндии', 'в Финляндии'],
+    'IN': ['Индии', 'в Индии'],
+    'ES': ['Испании', 'в Испании'],
+    'IT': ['Италии', 'в Италии'],
+    'DE': ['Германии', 'в Германии'],
+    'CZ': ['Чехии', 'в Чехии'],
+    'GB': ['Великобритании', 'в Великобритании'],
+    'US': ['США', 'в США'],
+    'CN': ['Китая', 'в Китае'],
+    'PK': ['Пакистана', 'в Пакистане'],
+    'PL': ['Польши', 'в Польше'],
+    'FR': ['Франции', 'в Франции'],
+    'PT': ['Португалии', 'в Португалии'],
+    'AR': ['Аргентины', 'в Аргентине'],
+    'BR': ['Бразилии', 'в Бразилии'],
+    'MX': ['Мексики', 'в Мексике'],
+}
+
 
 def generator_1(cities, countries, ac=25):
 
@@ -153,9 +174,24 @@ def generator_1(cities, countries, ac=25):
                 random.shuffle(bids)
 
             for i in range(len(bc)):
-                task['answs'].append(bc[bids[i]][4])
                 if bids[i] < aa:
-                    task['correct'].append(i)
+                    task['answs'].append([bc[bids[i]][4], None, 1])
+                else:
+                    if bc[bids[i]][4] != bc[bids[i]][1]:
+                        exp = "%s (%s) %s %s" % (bc[bids[i]][4],
+                                                 bc[bids[i]][1],
+                                                 " — город" if i % 2 else "находится",
+                                                 BAGS_RUS3[bc[bids[i]][2]][1])
+                    else:
+                        exp = "%s %s %s" % (bc[bids[i]][4],
+                                            " — город" if i % 2 else "находится",
+                                            BAGS_RUS3[bc[bids[i]][2]][1])
+
+                    task['answs'].append([bc[bids[i]][4], exp, 0])
+
+                # task['answs'].append(bc[bids[i]][4])
+                # if bids[i] < aa:
+                #     task['correct'].append(i)
 
             tasks.append(task)
 
@@ -214,9 +250,15 @@ def generator_2(cities, countries, ac=35):
         random.shuffle(bids)
 
         for i in range(len(bc)):
-            task['answs'].append(bc[bids[i]][4])
             if bids[i] < aa:
-                task['correct'].append(i)
+                exp = "%s (%s) — %s" % (bc[bids[i]][4], bc[bids[i]][1], bc[bids[i]][-1])
+                task['answs'].append([bc[bids[i]][4], exp, 1])
+            else:
+                # exp = "%s — %s" % (bc[bids[i]][4], bc[bids[i]][-1])
+                task['answs'].append([bc[bids[i]][4], None, 0])
+            # task['answs'].append(bc[bids[i]][4])
+            # if bids[i] < aa:
+            #     task['correct'].append(i)
 
         tasks.append(task)
 

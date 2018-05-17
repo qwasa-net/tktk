@@ -7,3 +7,5 @@ djangorestframework
 ipython
 pylint
 autopep8
+
+pytils

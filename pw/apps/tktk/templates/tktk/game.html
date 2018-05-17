@@ -10,7 +10,7 @@
 {% block content %}
 
 {# VueJS #}{% verbatim %}
-<div id='tktk_container'  class="invisible">
+<div id='tktk_container' class="invisible">
     <div id="gboard">
 
         <div v-if='task'>
@@ -61,8 +61,8 @@
             text="закончить"></popbutton>
 
             <div class="onleft">
+                <button class="transparent off" v-on:click="want_gohome" id="gohome"></button>
                 <button class="transparent on" v-on:click="soundonoff" id="sndbut"></button>
-                <!-- <button class="transparent" v-on:click="exit" id="homebut"></button> -->
             </div>
 
         </div>

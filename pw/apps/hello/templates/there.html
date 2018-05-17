@@ -22,7 +22,7 @@
             <i class="btn tktk"></i>{{user.name}}
         </h2>
         <p class='etc'>
-            [{{ user.created_at|date:'d-M-Y' }}]
+            <!-- {{ user.created_at|date:'d-M-Y' }} -->
             {% if user.email %}<br>{{ user.email }}
             {% elif user.username %}<br>{{ user.username }}
             {% endif %}

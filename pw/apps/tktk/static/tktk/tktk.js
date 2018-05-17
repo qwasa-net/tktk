@@ -85,7 +85,7 @@ var TKTKEngine = new Vue({
             this.board_id = data.id;
             this.board_pin = data.pin;
             if (data.game.config) {
-                for (var k in data.game.config) {
+                for (let k in data.game.config) {
                     this.config[k] = data.game.config[k];
                 }
             }
@@ -127,7 +127,7 @@ var TKTKEngine = new Vue({
                     idx: i,
                     key: i + this.task_idx * 1000
                 });
-                if (t0.answs[i][2]){
+                if (t0.answs[i][2]) {
                     this.task.corrects++;
                 }
             }
@@ -166,7 +166,7 @@ var TKTKEngine = new Vue({
                 }
             }
 
-            if (this.task.answs[but].explain){
+            if (this.task.answs[but].explain) {
                 this.explanation_text = this.task.answs[but].explain;
             }
 
@@ -205,7 +205,7 @@ var TKTKEngine = new Vue({
 
         //
         tixer_stop: function() {
-            if (this.tm_tixer){
+            if (this.tm_tixer) {
                 clearInterval(this.tm_tixer);
                 this.tm_tixer = null;
             }
@@ -255,7 +255,7 @@ var TKTKEngine = new Vue({
             if (!last_task) {
                 let next_delay = (this.config['auto_next'] && (this.config['auto_next_delay'] || 750)) || 15000;
                 console.log("nxt-delay=", next_delay);
-                this.tm_next_task = setTimeout(ev => {this.next_task();}, next_delay);
+                this.tm_next_task = setTimeout(ev => { this.next_task(); }, next_delay);
             } else {
                 this.finish();
             }
@@ -282,24 +282,24 @@ var TKTKEngine = new Vue({
         finish: function() {
             this.tixer_stop();
             this.state = 'end';
-            // this.exit();
         },
 
         //
         exit: function() {
 
-            var url = this.base_url + this.EXIT_URL;
-            var headers = { headers: { 'Content-Type': 'multipart/form-data' } };
-            var form = new FormData();
-            form.append('score', this.score);
-            form.append('id', this.board_id);
-            form.append('pin', this.board_pin);
+            let url = this.base_url + this.EXIT_URL;
+            let headers = { headers: { 'Content-Type': 'application/json' } };
+            let form = {
+                'score': this.score,
+                'id': this.board_id,
+                'pin': this.board_pin
+            };
 
             axios({ method: 'post', url: url, data: form, config: headers })
                 .then(function(response) {
                     if (response.data.status == "OK" && response.data.goto) {
                         window.location = response.data.goto;
-                    }else {
+                    } else {
                         window.location = this.PANIC_URL;
                     }
                 })
@@ -364,6 +364,15 @@ var TKTKEngine = new Vue({
                     ev.target.classList.remove('on');
                     ev.target.classList.add('off');
                 }
+            }
+        },
+
+        //
+        want_gohome: function(ev) {
+            if (ev.target.classList.contains("off")) {
+                ev.target.classList.remove("off");
+            } else {
+                this.exit();
             }
         },
 

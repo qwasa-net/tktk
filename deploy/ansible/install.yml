@@ -1,0 +1,42 @@
+- name: build code and static files
+  hosts: 127.0.0.1
+  become: no
+  connection: local
+  gather_facts: no
+  tasks:
+    - include_tasks: step01-build_code.yml
+  tags: "update"
+
+- name: sudo -- create user and database
+  hosts: tktk.pw
+  become: yes
+  tasks:
+    - include_tasks: step90-system-create_user_db.yml
+  tags: "install"
+
+- name: project install
+  hosts: tktk.pw
+  become: yes
+  become_user: "{{ user}}"
+  tasks:
+    - include_tasks: step11-create_env.yml
+    - include_tasks: step12-copy_code.yml
+    - include_tasks: step13-update_env.yml
+    - include_tasks: step19-cleanup.yml
+  tags: "update"
+
+- name: load initial data (optional)
+  hosts: tktk.pw
+  become: yes
+  become_user: "{{ user}}"
+  tasks:
+    - include_tasks: step20-loaddata.yml
+  tags: "load_demo_data"
+
+- name: sudo -- copy configs and restart services
+  hosts: tktk.pw
+  become: yes
+  tasks:
+    - include_tasks: step99-system-reload.yml
+  tags: "install"
+

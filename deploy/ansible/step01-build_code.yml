@@ -1,0 +1,18 @@
+- name: create git archive
+  shell: 
+    cd "{{ basedir }}";
+    mkdir -p "{{ basedir }}/_deploy";
+    git archive master --format zip --output "{{ basedir }}/_deploy/tktk.pw-{{ ts }}.zip";
+    ln -sf "{{ basedir }}/_deploy/tktk.pw-{{ ts }}.zip" "{{ basedir }}/_deploy/tktk.pw.zip";
+  args:
+    executable: /bin/bash
+
+- name: collectstatic
+  shell:
+    cd "{{ basedir }}";
+    "{{ basedir }}/.env/bin/python" pw/manage.py collectstatic --clear --no-input --verbosity 2 --settings=pw.settings;
+    zip -9r --quiet "{{ basedir }}/_deploy/www-{{ ts }}.zip" "www";
+    ln -sf "{{ basedir }}/_deploy/www-{{ ts }}.zip" "{{ basedir }}/_deploy/www.zip"
+  args:
+    executable: /bin/bash
+

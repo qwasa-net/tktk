@@ -1,0 +1,38 @@
+- name: create user
+  become: yes
+  user:
+    name: "{{ user }}"
+    shell: /bin/bash
+    groups: "{{ user_groups|default('users') }}"
+    generate_ssh_key: yes
+    ssh_key_file: .ssh/id_rsa
+    state: present
+
+- name: authorize user key
+  become: yes
+  authorized_key:
+    user: "{{ user }}"
+    state: present
+    key: "{{ lookup('file', user_ssh_public_key_file) }}"
+
+- name: create database (mysql)
+  become: yes
+  shell:
+    echo "CREATE DATABASE {{ db_name }};
+    GRANT ALL ON {{ db_name }}.* to '{{ db_user }}'@localhost identified by '{{ db_pass }}';
+    GRANT ALL ON {{ db_name }}.* to '{{ db_user }}' identified by '{{ db_pass }}';" | mysql;
+  args:
+    creates: "/var/lib/mysql/{{ db_name }}"
+
+# - name: create database (mysql)
+#   become: yes
+#   mysql_db:
+#     name: "{{ db_name }}"
+
+# - name: create database user (mysql)
+#   become: yes
+#   mysql_user:
+#     name: "{{ db_user }}"
+#     password: "{{ db_pass }}"
+#     priv: "{{ db_name }}.*:ALL"
+#     state: present

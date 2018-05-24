@@ -1,0 +1,37 @@
+- name: nginx.conf
+  become: yes
+  file:
+    src: "{{ project_dir }}/server/nginx.conf"
+    dest: "/etc/nginx/sites-enabled/tktk.pw.conf"
+    state: link
+    force: yes
+
+- name: uwsgi.conf
+  become: yes
+  file:
+    src: "{{ project_dir }}/server/uwsgi.ini"
+    dest: "/etc/uwsgi-emperor/vassals/tktk.pw.ini"
+    state: link
+    force: yes
+
+- name: logrotate
+  become: yes
+  file:
+    src: "{{ project_dir }}/server/logrotate.conf"
+    dest: "/etc/logrotate.d/{{ project_name }}"
+    state: link
+    force: yes
+
+- name: restart nginx
+  become: yes
+  systemd:
+    name: nginx
+    state: restarted
+    daemon_reload: yes
+
+- name: start uwsgi
+  become: yes
+  systemd:
+    name: uwsgi-emperor
+    state: restarted
+    daemon_reload: yes

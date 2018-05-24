@@ -1,0 +1,53 @@
+- file: path="{{ project_dir }}/_deploy/" state=absent
+- file: path="{{ project_dir }}/_deploy/" state=directory
+- file: path="{{ project_dir }}/_deploy/bak" state=directory
+
+- name: copy codebase
+  unarchive:
+    src: "{{ basedir }}/_deploy/tktk.pw.zip"
+    dest: "{{ project_dir }}/_deploy/"
+    owner: "{{ user }}"
+    group: "{{ user_groups[0] }}"
+
+- name: copy collectedstatic
+  unarchive:
+    src: "{{ basedir }}/_deploy/www.zip"
+    dest: "{{ project_dir }}/_deploy/"
+    owner: "{{ user }}"
+    group: "{{ user_groups[0] }}"
+
+- name: move pw+www → bak
+  shell: mv -f "{{ project_dir }}/pw" "{{ project_dir }}/www" "{{ project_dir }}/_deploy/bak/"
+  ignore_errors: yes
+
+- name: copy files
+  copy:
+    src: "{{ project_dir }}/_deploy/{{ item }}"
+    dest: "{{ project_dir }}/"
+    remote_src: yes
+    mode: "0755"
+    owner: "{{ user }}"
+    group: "{{ user_groups[0] }}"
+  with_items:
+    - pw
+    - www
+    - requirements.txt
+
+- name: copy project config file
+  copy:
+    src: "{{ basedir }}/keys/_production.ini"
+    dest: "{{ project_dir }}/_config.ini"
+    mode: "0640"
+    owner: "{{ user }}"
+    group: "{{ user_groups[0] }}"
+
+- name: create server config files (nginx, uwsgi)
+  template:
+    src: ../server/{{ item }}
+    dest: "{{ project_dir }}/server/{{ item }}"
+    owner: "{{ user }}"
+    group: "{{ user_groups[0] }}"
+  with_items:
+    - nginx.conf      
+    - uwsgi.ini
+    - logrotate.conf

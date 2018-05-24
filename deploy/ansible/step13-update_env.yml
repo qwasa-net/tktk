@@ -1,0 +1,16 @@
+- name: update .env
+  shell:
+    cd "{{ project_dir }}";
+    "{{ project_dir }}/.env/bin/pip" install -U -r requirements.txt;
+    "{{ project_dir }}/.env/bin/pip" install -U mysqlclient;
+  args:
+    executable: /bin/bash
+
+- name: run migrations
+  shell:
+    cd "{{ project_dir }}";
+    export CONFIG_FILE="{{ project_dir }}/_config.ini";
+    export CONFIG_SECTION=PRODUCTION;
+    "{{ project_dir }}/.env/bin/python" pw/manage.py migrate --settings=pw.settings;
+  args:
+    executable: /bin/bash

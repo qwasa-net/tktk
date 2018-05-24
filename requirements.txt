@@ -1,11 +1,14 @@
-unidecode
-
-django>=2.0.0,<=2.99.99
+django>=2.0,<=2.99
 django-pipeline
 djangorestframework
+
+## uncomment to use real database
+# mysqlclient
+# psycopg2
 
 ipython
 pylint
 autopep8
 
 pytils
+unidecode

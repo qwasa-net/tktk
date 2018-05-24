@@ -1,0 +1,21 @@
+- name: fix permissions -- root
+  file:
+    path: "{{ project_dir }}"
+    state: directory
+    recurse: yes
+    mode: "0775"
+    owner: "{{ user }}"
+    group: "{{ user_groups[0] }}"
+
+- name: fix permissions -- config
+  file:
+    path: "{{ project_dir }}/_config.ini"
+    state: touch
+    mode: "0640"
+    owner: "{{ user }}"
+    group: "{{ user_groups[0] }}"
+
+- name: reload uwsgi
+  file:
+    path: "{{ project_dir }}/server/uwsgi.ini"
+    state: touch

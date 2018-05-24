@@ -1,0 +1,33 @@
+all:
+
+  hosts:
+    tktk.pw:
+      ansible_user: tktk.pw
+      ansible_ssh_private_key_file: ../../keys/_tktk.pw-id_rsa
+      ansible_ssh_host: tktk.pw
+      ansible_ssh_port: 22
+      ansible_python_interpreter: /usr/bin/python3
+
+  vars:
+
+    # basedir: "../../"
+    basedir: "{{ lookup('pipe','git rev-parse --show-toplevel') }}"
+
+    ts: "{{ lookup('pipe', 'date \"+%Y%m%d-%H%M\"') }}"
+
+    hostname: tktk.pw
+    user: tktk.pw
+    user_ssh_public_key_file: ../../keys/_tktk.pw-id_rsa.pub
+    user_groups:
+      - www-data
+    project_name: tktk.pw
+
+    db_name: "tktk"
+    db_user: "tktk"
+    db_pass: "tktk"
+
+    userhome: /home/{{ user }}
+    project_dir: "{{ userhome }}/{{ project_name }}"
+
+    ngnxle_pathname: tktk.pw
+    ngnx_server_names: "tktk.pw tktk.tktk.pw tktk.tktk.in"

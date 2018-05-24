@@ -1,0 +1,10 @@
+- name: loaddata
+  shell:
+    cd "{{ project_dir }}";
+    export CONFIG_FILE="{{ project_dir }}/_config.ini";
+    export CONFIG_SECTION=PRODUCTION;
+    "{{ project_dir }}/.env/bin/python" pw/manage.py loaddata _deploy/data/pw-data*json --settings=pw.settings;
+  args:
+    executable: /bin/bash
+  when: load_demo_data is defined
+

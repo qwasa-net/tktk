@@ -1,4 +1,7 @@
 # tktk.pw
 
-my small **Vue** experiment project
+small **Vue.JS** experiment
 
+```bash
+> make tea
+```

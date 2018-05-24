@@ -13,5 +13,8 @@ local_settings.py
 db.sqlite3
 .env
 
+_deploy
+keys/_*
+
 .editorconfig
 .vscode/
